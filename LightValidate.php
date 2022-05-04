@@ -22,7 +22,7 @@ class LightValidate{
      *
      * @var string
      */
-    private $invalideSpecialCharacterPassword = "[,:;=|'<>.^*()]";
+    private $invalideSpecialCharacterPassword = "\[,:;=|'<>.^*()\]";
 
     /**
      * An Array with all method of our filter_input
@@ -159,7 +159,7 @@ class LightValidate{
                     return $outputResult;
                 }
             } elseif ($type === 'pwd'){
-                $regex = "/{$this->invalideSpecialCharacterPassword}/";
+                $regex = "/[{$this->invalideSpecialCharacterPassword}]/";
 
                 if(preg_match($regex, $validateResult)){
                     $this->result['errorMessage'] = "Your data contains a special character who not authorised, your data can't contains '{$this->invalideSpecialCharacterPassword}'";
@@ -294,7 +294,8 @@ class LightValidate{
      */ 
     public function getInvalideSpecialCharacterPassword()
     {
-        return $this->invalideSpecialCharacterPassword;
+
+        return str_replace("\\", "", $this->invalideSpecialCharacterPassword);
     }
 
     /**

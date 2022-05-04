@@ -115,6 +115,7 @@ echo $password->getInvalideSpecialCharacter(); // -> return "[,:;=|'<>.^*()]" if
 ### 3.1 - Method `addInvalideSpecialCharacter()`
 
 You can add one or more invalide special character :
+
 ```php
 $newInvalideSpecialCharacter = "{}";
 
@@ -125,6 +126,8 @@ $password->addInvalideSpecialCharacter($newInvalideSpecialCharacter);
 // now if you want to see current invalide special character
 echo $password->getInvalideSpecialCharacter(); // -> return "[,:;=|'<>.^*()]{}" 
 ```
+
+if you want to add `[` or `]` character you need to write `\[` or `\]`
 
 ### 3.2 Method `removeInvalideSpecialCharacter()`
 
