@@ -12,9 +12,17 @@ class LightValidate{
         'i' => FILTER_VALIDATE_INT,
         'f' => FILTER_VALIDATE_FLOAT,
         'a' => FILTER_SANITIZE_SPECIAL_CHARS,
+        'pwd' => FILTER_SANITIZE_SPECIAL_CHARS,
         'url' => FILTER_VALIDATE_URL,
         'mail' => FILTER_VALIDATE_EMAIL
     ];
+
+    /**
+     * all invalide characters for password (you can redefine or add a special character)
+     *
+     * @var string
+     */
+    private $invalideSpecialCharacterPassword = "[,:;=|'<>.^*()]";
 
     /**
      * An Array with all method of our filter_input
@@ -47,6 +55,7 @@ class LightValidate{
      *                                                              - 'i' => to test an int
      *                                                              - 'f' => to test a float
      *                                                              - 'a' => to test a string
+     *                                                              - 'pwd' => to test a password
      *                                                              - 'url' => to test an url
      *                                                              - 'mail' => to test an email
      *                                                              
@@ -149,6 +158,15 @@ class LightValidate{
                     $outputResult = $this->result;
                     return $outputResult;
                 }
+            } elseif ($type === 'pwd'){
+                $regex = "/{$this->invalideSpecialCharacterPassword}/";
+
+                if(preg_match($regex, $validateResult)){
+                    $this->result['errorMessage'] = "Your data contains a special character who not authorised, your data can't contains '{$this->invalideSpecialCharacterPassword}'";
+                    $this->result['isValide'] = false;
+                    $outputResult = $this->result;
+                    return $outputResult;
+                }
             }
         }
 
@@ -245,5 +263,51 @@ class LightValidate{
 
         $outputResult = $this->result;
         return $outputResult;
+    }
+
+    /**
+     * This method add one or more invalid special character 
+     *
+     * @param string $specialCharacter you can specify one or more invalide special character to add
+     * @return void
+     */
+    public function addInvalideSpecialCharacter($specialCharacter){
+
+        $this->invalideSpecialCharacterPassword .= $specialCharacter;
+    }
+
+    /**
+     * This method remove special character you want
+     *
+     * @param string $specialCharacterToRemove you can specify one or more invalid special character to remove
+     * @return void
+     */
+    public function removeInvalideSpecialCharacter($specialCharacterToRemove){
+
+        str_replace($specialCharacterToRemove, "", $this->invalideSpecialCharacterPassword);
+    }
+
+    /**
+     * Get all invalide characters for password
+     *
+     * @return  string
+     */ 
+    public function getInvalideSpecialCharacterPassword()
+    {
+        return $this->invalideSpecialCharacterPassword;
+    }
+
+    /**
+     * Set all invalide characters for password
+     *
+     * @param  string  $invalideSpecialCharacterPassword  all invalide characters for password
+     *
+     * @return  self
+     */ 
+    public function setInvalideSpecialCharacterPassword(string $invalideSpecialCharacterPassword)
+    {
+        $this->invalideSpecialCharacterPassword = $invalideSpecialCharacterPassword;
+
+        return $this;
     }
 }

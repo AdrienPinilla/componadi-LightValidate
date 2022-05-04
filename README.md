@@ -1,6 +1,6 @@
 # Welcome to my LightValidate component 
 
-### Version 1.0
+### Version 1.1.0
 
 ## 1 - A simple call
 
@@ -68,13 +68,22 @@ private $validateType = [
     'i' => FILTER_VALIDATE_INT,
     'f' => FILTER_VALIDATE_FLOAT,
     'a' => FILTER_SANITIZE_SPECIAL_CHARS,
+    'pwd' => FILTER_SANITIZE_SPECIAL_CHARS,
     'url' => FILTER_VALIDATE_URL,
     'mail' => FILTER_VALIDATE_EMAIL
 ];
 ```
+
+- `'i'` => to test an integer
+- `'f'` => to test a float
+- `'a'` => to test a string
+- `'pwd'` => to test a password (you can define or add spécial character authorized)
+- `'url'` => to test an url
+- `'mail'` => to test an email
+
 ### 2.3 - Min/Max Definition
 
-You can definate a min or max value you want for your variable both or just one or nothing (this is an optionnal arguments).
+You can define a min or max value you want for your variable, both or just one or nothing (this is an optionnal arguments).
 
 Their are 4 value authorised : <br/>
   - `'min'` -> define a min value
@@ -89,4 +98,63 @@ If you want to define a min or max value you need to define it in an array like 
 [ 'min' => 3 , 'max-e' => 20]
 [ 'min-e' => 5 ]
 [ 'max' => 10 ]
+```
+
+## 3 - Modification of Invalid Special Character to test password
+
+By default invalide special character are : `[,:;=|'<>.^*()]`
+
+But you can modify, add or remove special character
+
+If you want to see or know current invalide special character you can use :
+```php
+$password = new LightValidate();
+
+echo $password->getInvalideSpecialCharacter(); // -> return "[,:;=|'<>.^*()]" if you modify nothing before
+```
+### 3.1 - Method `addInvalideSpecialCharacter()`
+
+You can add one or more invalide special character :
+```php
+$newInvalideSpecialCharacter = "{}";
+
+$password = new LightValidate();
+
+$password->addInvalideSpecialCharacter($newInvalideSpecialCharacter); 
+
+// now if you want to see current invalide special character
+echo $password->getInvalideSpecialCharacter(); // -> return "[,:;=|'<>.^*()]{}" 
+```
+
+### 3.2 Method `removeInvalideSpecialCharacter()`
+
+You can remove one or more invalid special character :
+
+```php
+// we have not modify $invalideSpecialCharacter before
+// we have "[,:;=|'<>.^*()]" value
+$removeInvalideSpecialCharacter = "=*";
+
+$password = new LightValidate();
+
+$password->removeInvalideSpecialCharacter($removeInvalideSpecialCharacter); 
+
+// now if you want to see current invalide special character
+echo $password->getInvalideSpecialCharacter(); // -> return "[,:;|'<>.^()]{}" 
+```
+
+### 3.3 Method `setInvalideSpecialCharacter()`
+
+You can set invalid character
+```php
+// we have not modify $invalideSpecialCharacter before
+// we have "[,:;=|'<>.^*()]" value
+$InvalideSpecialCharacter = "^]!§";
+
+$password = new LightValidate();
+
+$password->setInvalideSpecialCharacter($InvalideSpecialCharacter); 
+
+// now if you want to see current invalide special character
+echo $password->getInvalideSpecialCharacter(); // -> return "^]!§" 
 ```

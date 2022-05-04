@@ -1,7 +1,7 @@
 {
     "name": "componadi/lightvalidate",
     "keywords": ["validate","form"],
-    "version" : "1.0",
+    "version" : "1.1.0",
     "description": "LightValidate is a light and simple validation componant",
     "type": "library",
     "authors": [
