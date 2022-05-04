@@ -1,0 +1,21 @@
+{
+    "name": "componadi/lightvalidate",
+    "keywords": ["validate","form"],
+    "version" : "1.0",
+    "description": "LightValidate is a light and simple validation componant",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Adrien",
+            "email": "adrienpinilla@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "classmap": ["LightValidate.php"]
+    },
+    "minimum-stability": "stable"
+}
