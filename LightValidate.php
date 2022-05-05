@@ -192,7 +192,8 @@ class LightValidate{
                         return $outputResult;
                     }
                 // if 'min-e' exist 
-                } elseif (isset($minMax['min-e'])){
+                }
+                if (isset($minMax['min-e'])){
                     
                     // test $validateResult with min-e value
                     if ($validateResult <= $minMax['min-e']){
@@ -203,7 +204,8 @@ class LightValidate{
                         return $outputResult;
                     }
                 // if 'max' exist
-                } elseif (isset($minMax['max'])){
+                }
+                if (isset($minMax['max'])){
 
                     // test $validateResult with max value
                     if ($validateResult > $minMax['max']){
@@ -214,7 +216,8 @@ class LightValidate{
                         return $outputResult;
                     }
                 // if 'max-e' exist
-                } elseif (isset($minMax['max-e'])){
+                }
+                if (isset($minMax['max-e'])){
                     
                     // test $validateResult with max-e value
                     if ($validateResult >= $minMax['max-e']){
@@ -225,7 +228,7 @@ class LightValidate{
                         return $outputResult;
                     }
                 }
-            } elseif ($type === 'a' || $type === 'url' || $type === 'mail'){
+            } elseif ($type === 'a' || $type === 'url' || $type === 'mail' || $type === 'pwd'){
 
                 //test if 'min' exist
                 if (isset($minMax['min'])){
@@ -239,7 +242,8 @@ class LightValidate{
                         return $outputResult;
                     }
                 // if 'max' exist
-                } elseif (isset($minMax['max'])){
+                } 
+                if (isset($minMax['max'])){
 
                     // test $validateResult with max value
                     if (strlen($validateResult) > $minMax['max']){
