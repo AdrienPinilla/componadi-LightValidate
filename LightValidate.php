@@ -42,7 +42,7 @@ class LightValidate{
     private $result = [
         'data' => "",
         'isValide' => true,
-        'errorMessage' => "everything is ok !"
+        'errorMessage' => ""
     ];
 
     /**
@@ -150,10 +150,10 @@ class LightValidate{
 
             // we test if $validateResult contains a special character, if is true is incorrect
             if ($type === 'a'){
-                $regex = "/[$&+,:;=?@#|'-<>.^*()%!]/";
+                $regex = "/[{$this->invalideSpecialCharacterPassword}]/";
 
                 if(preg_match($regex, $validateResult)){
-                    $this->result['errorMessage'] = "Your data contains a special character who not authorised, your data can't contains '[$&+,:;=?@#|'<>.-^*()%!]'";
+                    $this->result['errorMessage'] = "Your data contains a special character who not authorised, your data can't contains '{$this->invalideSpecialCharacterPassword}'";
                     $this->result['isValide'] = false;
                     $outputResult = $this->result;
                     return $outputResult;
@@ -260,6 +260,8 @@ class LightValidate{
         //==========================================================
 
         $this->result['data'] = $validateResult;
+        $this->result['isValide'] = true;
+        $this->result['errorMessage'] = "everything is ok !";
 
         $outputResult = $this->result;
         return $outputResult;

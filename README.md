@@ -1,6 +1,6 @@
 # Welcome to my LightValidate component 
 
-### Version 1.1.1
+### Version 1.1.2
 
 ## 1 - A simple call
 
