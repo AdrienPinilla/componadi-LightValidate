@@ -286,7 +286,7 @@ class LightValidate{
      */
     public function removeInvalideSpecialCharacter($specialCharacterToRemove){
 
-        str_replace($specialCharacterToRemove, "", $this->invalideSpecialCharacterPassword);
+        $this->invalideSpecialCharacterPassword =  str_replace($specialCharacterToRemove, "", $this->invalideSpecialCharacterPassword);
     }
 
     /**

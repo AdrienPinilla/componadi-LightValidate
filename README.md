@@ -1,6 +1,6 @@
 # Welcome to my LightValidate component 
 
-### Version 1.1.2
+### Version 1.1.3
 
 ## 1 - A simple call
 
@@ -136,7 +136,7 @@ You can remove one or more invalid special character :
 ```php
 // we have not modify $invalideSpecialCharacter before
 // we have "[,:;=|'<>.^*()]" value
-$removeInvalideSpecialCharacter = "=*";
+$removeInvalideSpecialCharacter = ["=", "*"];
 
 $password = new LightValidate();
 
@@ -144,6 +144,19 @@ $password->removeInvalideSpecialCharacter($removeInvalideSpecialCharacter);
 
 // now if you want to see current invalide special character
 echo $password->getInvalideSpecialCharacter(); // -> return "[,:;|'<>.^()]{}" 
+
+
+// if you want remove one character
+// we have not modify $invalideSpecialCharacter before
+// we have "[,:;=|'<>.^*()]" value
+$removeInvalideSpecialCharacter = "*";
+
+$password = new LightValidate();
+
+$password->removeInvalideSpecialCharacter($removeInvalideSpecialCharacter); 
+
+// now if you want to see current invalide special character
+echo $password->getInvalideSpecialCharacter(); // -> return "[,:;=|'<>.^()]{}" 
 ```
 
 ### 3.3 Method `setInvalideSpecialCharacter()`
