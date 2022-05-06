@@ -74,7 +74,12 @@ class LightValidate{
      */
     public function validate($dataToTest,string $method,string $type, array $minMax = []){
 
-        $this->result['data'] = $_POST[$dataToTest];
+        if ($method === 'POST'){
+            $this->result['data'] = isset($_POST[$dataToTest]) ? $_POST[$dataToTest] : null;
+        } elseif($method === 'GET'){
+            $this->result['data'] = isset($_GET[$dataToTest]) ? $_GET[$dataToTest] : null;
+        }
+        
 
         //==========================================================
         //              Tests parameter's values 
